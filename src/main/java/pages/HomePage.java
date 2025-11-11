@@ -12,7 +12,7 @@ public class HomePage extends BasePage {
     @FindBy(css = "div.Col2.Product-Desc > h5")
     private WebElement demoEBookInput;
 
-    @FindBy(className = "Apply-Button Show-Promo-Code-Button")
+    @FindBy(className = "Apply-Button")
     private WebElement addPromoCodeBtn;
 
     @FindBy(className = "Promo-Code-Value")
@@ -47,7 +47,6 @@ public class HomePage extends BasePage {
     public void verifyInvalidMessage(){
         verifyDisplayed(invalidMessage,"Invalid promo code");
     }
-
 
     public HomePage(WebDriver driver) {
         super(driver);
