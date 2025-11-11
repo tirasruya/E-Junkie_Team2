@@ -1,18 +1,27 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import java.time.Duration;
 
 public class HomePage extends BasePage {
 
     @FindBy(xpath = "(//button[@class='view_product'])[2]")
     private WebElement demoEBookBtn;
 
-    @FindBy(css = "div.Col2.Product-Desc > h5")
-    private WebElement demoEBookInput;
+    @FindBy(css = "iframe.EJIframeV3")
+    private WebElement cartFrame;
 
-    @FindBy(className = "Apply-Button")
+    @FindBy(css = "iframe[src*='fatfreecartpro.com/ecom/gv3.php")
+    private WebElement demoEBookQuantity;
+
+    @FindBy(xpath = "//button[text()='Add Promo Code']")
     private WebElement addPromoCodeBtn;
 
     @FindBy(className = "Promo-Code-Value")
@@ -28,8 +37,12 @@ public class HomePage extends BasePage {
         clickElement(demoEBookBtn);
     }
 
+    public void enterCartFrame(){
+        driver.switchTo().frame(cartFrame);
+    }
+
     public void verifyDemoEBookInput(){
-        verifyDisplayed(demoEBookInput,"Demo eBook");
+        verifyDisplayed(demoEBookQuantity,"1");
     }
 
     public void clickAddPromoCodeBtn(){

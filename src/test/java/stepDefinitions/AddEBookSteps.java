@@ -6,23 +6,25 @@ import org.openqa.selenium.WebDriver;
 import pages.HomePage;
 import utility.BaseDriver;
 
-public class AddEBookSteps {
+public class AddEBookSteps extends BaseDriver {
 
-    WebDriver driver;
     HomePage homePage;
+
 
     @When("Navigate the homepage")
     public void navigate_the_homepage() {
-        driver= BaseDriver.getDriver();
-        homePage=new HomePage(driver);
+        BaseDriver.getDriver();
     }
+
     @Then("Find the Add to Cart button and click it")
     public void find_the_add_to_cart_button_and_click_it() {
-        homePage.clickDemoEBookBtn();
+       // homePage.clickDemoEBookBtn();
+        System.out.println("a");
     }
 
     @Then("Verify E Book added")
     public void verify_e_book_added() {
+        homePage.enterCartFrame();
         homePage.verifyDemoEBookInput();
     }
 
