@@ -18,16 +18,16 @@ This project covers end-to-end testing of the E-Junkie demo e-commerce platform 
 
 
 ## 🛠️ Tech Stack & Tools
--☕️ Java
--🌐 Selenium WebDriver
--✅ TestNG
--🧩 Cucumber BDD
--✍️ Gherkin
--📄 Page Object Model (POM)
--🛠️ Maven
+- ☕️ Java
+- 🌐 Selenium WebDriver
+- ✅ TestNG
+- 🧩 Cucumber BDD
+- ✍️ Gherkin
+- 📄 Page Object Model (POM)
+- 🛠️ Maven
 
 ## 👥 Team
--Ruya Tiras
--Aslihan Gulluoglu
--Taner Ozcelik
--Efe Ersan
+- Ruya Tiras
+- Aslihan Gulluoglu
+- Taner Ozcelik
+- Efe Ersan
