@@ -11,11 +11,12 @@ public class BaseDriver {
 
     public static WebDriver getDriver() {
 
-        driver = new ChromeDriver();
-        driver.get("https://shopdemo.fatfreeshop.com/");
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
+        if (driver == null) {
+            driver = new ChromeDriver();
+            driver.get("https://shopdemo.fatfreeshop.com/?");
+            driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        }
         return driver;
     }
 

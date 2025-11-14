@@ -2,23 +2,27 @@ package stepDefinitions;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
 import utility.BaseDriver;
 
+import java.time.Duration;
+
 public class AddEBookSteps extends BaseDriver {
 
+
     HomePage homePage;
-
-
+    public AddEBookSteps(){
+        this.homePage = new HomePage(BaseDriver.getDriver());
+    }
     @When("Navigate the homepage")
     public void navigate_the_homepage() {
-        BaseDriver.getDriver();
+        System.out.println("Navigated to homepage successfully.");
     }
 
     @Then("Find the Add to Cart button and click it")
     public void find_the_add_to_cart_button_and_click_it() {
-       // homePage.clickDemoEBookBtn();
+        homePage.clickDemoEBookBtn();
         System.out.println("a");
     }
 
@@ -45,6 +49,6 @@ public class AddEBookSteps extends BaseDriver {
 
     @Then("Verify the invalid message")
     public void verify_the_invalid_message() {
-       homePage.verifyInvalidMessage();
+        homePage.verifyInvalidMessage();
     }
 }

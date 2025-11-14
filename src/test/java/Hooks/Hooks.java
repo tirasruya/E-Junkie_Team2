@@ -15,16 +15,11 @@ import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Hooks {
+public class Hooks extends BaseDriver {
 
     public static WebDriver driver;
     public Logger LOGGER = LogManager.getLogger(this.getClass());
 
-    @Before
-    public void setup(Scenario scenario) {
-        driver = BaseDriver.getDriver();
-        LOGGER.info("Driver created for scenario: " + scenario.getName());
-    }
 
     @After
     public void tearDown(Scenario scenario) {
@@ -50,7 +45,7 @@ public class Hooks {
 
         } catch (Exception e) {
             e.printStackTrace();
-            LOGGER.error("Screenshot alınamadı: " + e.getMessage());
+            LOGGER.error("Screenshot alınamadı: {}", e.getMessage());
         } finally {
             try {
                 driver.quit();

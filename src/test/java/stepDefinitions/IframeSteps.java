@@ -8,16 +8,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utility.BaseDriver;
 import utility.SharedDriver;
 
 import java.time.Duration;
 
-public class IframeSteps {
-    private final WebDriver driver;
+import static utility.BaseDriver.driver;
 
-    public IframeSteps(SharedDriver sharedDriver) { // örnek DI
-        this.driver = SharedDriver.getDriver();
-    }
+public class IframeSteps extends BaseDriver {
 
     @When("kullanıcı iframe id'si {string} olan frame'e geçer")
     public void switchToIframeById(String cssOrId) {

@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import utility.BaseDriver;
 
 import java.time.Duration;
 
@@ -20,10 +21,9 @@ public class BasePage {
     WebDriver driver;
     WebDriverWait wait;
 
-    public BasePage(final WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+    public BasePage() {
+        wait = new WebDriverWait(BaseDriver.getDriver(), Duration.ofSeconds(10));
+        driver=BaseDriver.getDriver();
     }
 
     public void clickElement(final WebElement element) {
