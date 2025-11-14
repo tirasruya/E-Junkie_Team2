@@ -35,7 +35,7 @@ public class HomePage extends BasePage {
     @FindBy(className = "Promo-Apply")
     private WebElement promoApplyBtn;
 
-    @FindBy(xpath = "//*[@id='SnackBar']/span/text()")
+    @FindBy(xpath = "//div[@id='SnackBar']//span[contains(text(), 'Invalid promo code')]\n")
     private WebElement invalidMessage;
 
     public void clickDemoEBookBtn(){
