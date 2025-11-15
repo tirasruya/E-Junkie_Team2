@@ -5,9 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
-
 public class EJunkiePage extends BasePage {
 
     @FindBy(css = "div.column.is-2-desktop.is-4-tablet.is-4-mobile > a > img")
@@ -39,20 +36,6 @@ public class EJunkiePage extends BasePage {
         Assert.assertEquals(currentURL, "https://www.e-junkie.com/", "URL does not match expected");
     }
 
-    public void playVideoAndCloseAfter(int seconds) throws AWTException, InterruptedException {
-        String parentWindow = driver.getWindowHandle();
-        for (String windowHandle : driver.getWindowHandles()) {
-            if (!windowHandle.equals(parentWindow)) {
-                driver.switchTo().window(windowHandle);
-                break;
-            }
-        }
-
-        Robot robot = new Robot();
-        robot.keyPress(KeyEvent.VK_SPACE);
-        robot.keyRelease(KeyEvent.VK_SPACE);
-        Thread.sleep(seconds * 1000);
-        driver.close();
-        driver.switchTo().window(parentWindow);
+    public void playVideoAndCloseAfter() {
     }
 }

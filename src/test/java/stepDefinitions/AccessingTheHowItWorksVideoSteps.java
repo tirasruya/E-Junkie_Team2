@@ -4,8 +4,6 @@ import io.cucumber.java.en.*;
 import pages.EJunkiePage;
 import utility.BaseDriver;
 
-import java.awt.AWTException;
-
 public class AccessingTheHowItWorksVideoSteps extends BaseDriver {
 
     EJunkiePage eJunkiePage;
@@ -31,8 +29,8 @@ public class AccessingTheHowItWorksVideoSteps extends BaseDriver {
     }
 
     @Then("the YouTube video should start playing")
-    public void playVideo() throws AWTException, InterruptedException {
-        eJunkiePage.playVideoAndCloseAfter(10);
+    public void playVideo(){
+        eJunkiePage.playVideoAndCloseAfter();
     }
 
     @Then("the video window should close after 10 seconds")
