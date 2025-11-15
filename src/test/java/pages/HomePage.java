@@ -7,6 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import utility.BaseDriver;
 
 import java.util.List;
@@ -37,6 +38,13 @@ public class HomePage extends BasePage {
 
     @FindBy(xpath = "//div[@id='SnackBar']//span[contains(text(), 'Invalid promo code')]\n")
     private WebElement invalidMessage;
+
+    @FindBy(css = ".EJ-ShopLink.EJ-ShopLink")
+    private WebElement eCommerceByEJunkieText;
+
+    @FindBy(css = "div.column.is-2-desktop.is-4-tablet.is-4-mobile > a > img")
+    private WebElement eJunkieLogo;
+
 
     public void clickDemoEBookBtn(){
         List<WebElement> boxes = driver.findElements(By.cssSelector("div.box"));
@@ -74,6 +82,21 @@ public class HomePage extends BasePage {
     public void verifyInvalidMessage(){
         verifyDisplayed(invalidMessage,"Invalid promo code");
     }
+
+    public void clickECommerceByEJunkieText() {
+        clickElement(eCommerceByEJunkieText);
+    }
+
+    public void clickEJunkieLogo() {
+        clickElement(eJunkieLogo);
+    }
+
+    public void verifyEJunkieHomeURL() {
+        String currentURL = driver.getCurrentUrl();
+        Assert.assertEquals(currentURL, "https://www.e-junkie.com/",
+                "URL is not redirected to the E-Junkie homepage!");
+    }
+
 
 
 }

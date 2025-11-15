@@ -2,11 +2,8 @@ package stepDefinitions;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
 import utility.BaseDriver;
-
-import java.time.Duration;
 
 public class AddEBookSteps extends BaseDriver {
 
