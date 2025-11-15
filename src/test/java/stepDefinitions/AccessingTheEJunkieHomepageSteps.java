@@ -2,30 +2,33 @@ package stepDefinitions;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import pages.EJunkiePage;
 import pages.HomePage;
 import utility.BaseDriver;
 
 public class AccessingTheEJunkieHomepageSteps extends BaseDriver {
 
     HomePage homePage;
+    EJunkiePage eJunkiePage;
 
     public AccessingTheEJunkieHomepageSteps(){
-        this.homePage = new HomePage(BaseDriver.getDriver());
+        driver = BaseDriver.getDriver();
+        this.homePage = new HomePage(driver);
+        this.eJunkiePage = new EJunkiePage(driver);
     }
 
-    @When("the user clicks the {string} link")
-    public void userClicksECommerceLink(String linkName) {
+    @When("the user clicks the ECommerceByEJunkie link")
+    public void userClicksECommerceLink() {
         homePage.clickECommerceByEJunkieText();
     }
 
     @When("the user clicks the E-Junkie logo on the new page")
     public void clickEJunkieLogo() {
-        homePage.clickEJunkieLogo();
+        eJunkiePage.clickEJunkieLogo();
     }
 
-    @Then("the user should be redirected to {string}")
-    public void verifyRedirectedURL(String expectedUrl) {
-        homePage.verifyEJunkieHomeURL();
+    @Then("the user should be redirected to e-junkie.com")
+    public void verifyEJunkieHomeURL() {
+        eJunkiePage.verifyEJunkieHomeURL();
     }
-
 }

@@ -7,11 +7,12 @@ import utility.BaseDriver;
 
 public class AddEBookSteps extends BaseDriver {
 
-
     HomePage homePage;
+
     public AddEBookSteps(){
         this.homePage = new HomePage(BaseDriver.getDriver());
     }
+
     @When("Navigate the homepage")
     public void navigate_the_homepage() {
         System.out.println("Navigated to homepage successfully.");

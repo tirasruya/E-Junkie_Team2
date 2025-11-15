@@ -8,10 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import utility.BaseDriver;
 
 import java.time.Duration;
 
@@ -21,9 +19,10 @@ public class BasePage {
     WebDriver driver;
     WebDriverWait wait;
 
-    public BasePage() {
-        wait = new WebDriverWait(BaseDriver.getDriver(), Duration.ofSeconds(10));
-        driver=BaseDriver.getDriver();
+    public BasePage(final WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
     public void clickElement(final WebElement element) {
@@ -43,7 +42,7 @@ public class BasePage {
                     ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
                     LOGGER.debug("Element clicked with Javascript");
                 } catch (Exception e3) {
-                    throw new RuntimeException("All click methods failed");
+                    throw new RuntimeException("Hicbir click metodu ise yaramadi");
                 }
             }
         }
@@ -70,74 +69,15 @@ public class BasePage {
                             .executeScript("arguments[0].value = arguments[1];", element, text);
                     LOGGER.debug("Text sent to element with Javascript");
                 } catch (Exception e3) {
-                    throw new RuntimeException("All sendKeys operations failed");
+                    throw new RuntimeException("Tüm sendKeys islemleri basarisiz oldu");
                 }
             }
         }
+
     }
 
-    public void verifyDisplayed(final WebElement element, final String expectedText) {
+    public void verifyDisplayed(final WebElement element, final String text) {
         wait.until(ExpectedConditions.visibilityOf(element));
-        Assert.assertTrue(element.isDisplayed(), "Element is not displayed.");
-        Assert.assertEquals(element.getText().trim(), expectedText, "Text does not match!");
-    }
-
-    public void selectDropdown(final WebElement element, final String selectionType, final String selectionValue) {
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-        try {
-            Select dropdown = new Select(element);
-            switch (selectionType.toLowerCase()) {
-                case "visibletext":
-                    dropdown.selectByVisibleText(selectionValue);
-                    break;
-                case "value":
-                    dropdown.selectByValue(selectionValue);
-                    break;
-                case "index":
-                    dropdown.selectByIndex(Integer.parseInt(selectionValue));
-                    break;
-                default:
-                    throw new IllegalArgumentException("Invalid selection type: " + selectionType);
-            }
-            LOGGER.debug("Dropdown selected by " + selectionType + ": " + selectionValue);
-        } catch (Exception e1) {
-            try {
-                new Actions(driver)
-                        .moveToElement(element)
-                        .click()
-                        .perform();
-                Select dropdown = new Select(element);
-                switch (selectionType.toLowerCase()) {
-                    case "visibletext":
-                        dropdown.selectByVisibleText(selectionValue);
-                        break;
-                    case "value":
-                        dropdown.selectByValue(selectionValue);
-                        break;
-                    case "index":
-                        dropdown.selectByIndex(Integer.parseInt(selectionValue));
-                        break;
-                }
-                LOGGER.debug("Dropdown selected with Actions by " + selectionType + ": " + selectionValue);
-            } catch (Exception e2) {
-                try {
-                    String script = "var select = arguments[0];"
-                            + "var type = arguments[2];"
-                            + "var val = arguments[1];"
-                            + "if(type === 'visibletext'){"
-                            + "for(var i=0;i<select.options.length;i++){"
-                            + "if(select.options[i].text===val){select.selectedIndex=i; select.dispatchEvent(new Event('change'));}}"
-                            + "}else if(type==='value'){"
-                            + "select.value=val; select.dispatchEvent(new Event('change'));"
-                            + "}else if(type==='index'){"
-                            + "select.selectedIndex=parseInt(val); select.dispatchEvent(new Event('change'));"
-                            + "}";
-                    ((JavascriptExecutor) driver).executeScript(script, element, selectionValue, selectionType.toLowerCase());
-                    LOGGER.debug("Dropdown selected with Javascript by " + selectionType + ": " + selectionValue);
-                } catch (Exception e3) {
-                    throw new RuntimeException("All dropdown selection methods failed");
-                }
-            }
-        }
+        Assert.assertTrue(element.isDisplayed(), text);
     }
 }

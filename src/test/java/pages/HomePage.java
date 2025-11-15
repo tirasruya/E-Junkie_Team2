@@ -13,10 +13,6 @@ import utility.BaseDriver;
 import java.util.List;
 
 public class HomePage extends BasePage {
-    public HomePage(WebDriver driver) {
-        PageFactory.initElements(BaseDriver.getDriver(), this);
-    }
-    Actions actionDriver = new Actions(BaseDriver.getDriver());
 
     @FindBy(xpath = "(//button[@class='view_product'])[2]")
     private WebElement demoEBookBtn;
@@ -42,9 +38,11 @@ public class HomePage extends BasePage {
     @FindBy(css = ".EJ-ShopLink.EJ-ShopLink")
     private WebElement eCommerceByEJunkieText;
 
-    @FindBy(css = "div.column.is-2-desktop.is-4-tablet.is-4-mobile > a > img")
-    private WebElement eJunkieLogo;
+    public HomePage(WebDriver driver) {
+        super(driver);
+    }
 
+    Actions actionDriver = new Actions(BaseDriver.getDriver());
 
     public void clickDemoEBookBtn(){
         List<WebElement> boxes = driver.findElements(By.cssSelector("div.box"));
@@ -86,17 +84,4 @@ public class HomePage extends BasePage {
     public void clickECommerceByEJunkieText() {
         clickElement(eCommerceByEJunkieText);
     }
-
-    public void clickEJunkieLogo() {
-        clickElement(eJunkieLogo);
-    }
-
-    public void verifyEJunkieHomeURL() {
-        String currentURL = driver.getCurrentUrl();
-        Assert.assertEquals(currentURL, "https://www.e-junkie.com/",
-                "URL is not redirected to the E-Junkie homepage!");
-    }
-
-
-
 }
