@@ -61,8 +61,8 @@ public class HomePage extends BasePage {
 
     public void verifyDemoEBookInput(){
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[class='Apply-Button Show-Promo-Code-Button']")));
-        WebElement clickablebitch = driver.findElement(By.cssSelector("button[class='Apply-Button Show-Promo-Code-Button']"));
-        actionDriver.moveToElement(clickablebitch).click().build().perform();
+        WebElement clickableBtn = driver.findElement(By.cssSelector("button[class='Apply-Button Show-Promo-Code-Button']"));
+        actionDriver.moveToElement(clickableBtn).click().build().perform();
     }
 
     public void clickAddPromoCodeBtn(){
