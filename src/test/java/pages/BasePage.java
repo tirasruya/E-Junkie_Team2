@@ -25,6 +25,14 @@ public class BasePage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
+    public static void threadWait(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000L);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void clickElement(final WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
         try {
