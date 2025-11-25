@@ -21,7 +21,6 @@ public class AddEBookSteps extends BaseDriver {
     @Then("Find the Add to Cart button and click it")
     public void find_the_add_to_cart_button_and_click_it() {
         homePage.clickDemoEBookBtn();
-        System.out.println("a");
     }
 
     @Then("Verify E Book added")
