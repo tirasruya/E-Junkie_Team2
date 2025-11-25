@@ -20,7 +20,7 @@ public class UnsuccessfulPaymentWithCreditCardSteps extends BaseDriver {
 
     @When("Fill in the mandatory payment fields with valid data except for Card Number")
     public void fillPaymentFields() {
-        paymentPage.fillPaymentForm();
+        paymentPage.fillPaymentFormWithInvalidData();
     }
 
     @And("Click the Payment button")
