@@ -39,6 +39,10 @@ public class PaymentPage extends BasePage {
     @FindBy(css = "#SnackBar > span")
     private WebElement errorMessages;
 
+    @FindBy(css = "span.green_text_margin")
+    private WebElement confirmationMessage;
+
+
     public PaymentPage(WebDriver driver) {
         super(driver);
     }
@@ -71,7 +75,7 @@ public class PaymentPage extends BasePage {
         verifyDisplayed(errorMessages, "Invalid Email Invalid Email Invalid Billing Name");
     }
 
-    public void fillPaymentForm(){
+    public void fillPaymentFormWithInvalidData(){
         sendKeysToElement(emailInput, "tester@example.com");
         sendKeysToElement(emailConfirmationInput, "tester@example.com");
         sendKeysToElement(nameInput, "Tester");
@@ -86,7 +90,26 @@ public class PaymentPage extends BasePage {
         driver.switchTo().parentFrame();
     }
 
+    public void fillPaymentFormWithValidData(){
+        sendKeysToElement(emailInput, "tester@example.com");
+        sendKeysToElement(emailConfirmationInput, "tester@example.com");
+        sendKeysToElement(nameInput, "Tester");
+
+        WebElement stripeFrame = driver.findElement(By.cssSelector("iframe[name^='__privateStripeFrame']"));
+        driver.switchTo().frame(stripeFrame);
+
+        sendKeysToElement(cardNumberInput, "4242 4242 4242 4242");
+        sendKeysToElement(expDateInput, "1225");
+        sendKeysToElement(cvcInput, "000");
+
+        driver.switchTo().parentFrame();
+    }
+
     public void verifyCardNumberErrorMessage(){
         verifyDisplayed(errorMessages, "Your card number is invalid.");
+    }
+
+    public void verifyConfirmationMessage(){
+        verifyDisplayed(confirmationMessage, "your order is confirmed. Thank you!");
     }
 }
