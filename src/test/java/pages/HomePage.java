@@ -38,6 +38,9 @@ public class HomePage extends BasePage {
     @FindBy(css = ".EJ-ShopLink.EJ-ShopLink")
     private WebElement eCommerceByEJunkieText;
 
+    @FindBy(css = ".contact")
+    private WebElement contactUsBtn;
+
     public HomePage(WebDriver driver) {
         super(driver);
     }
@@ -83,5 +86,9 @@ public class HomePage extends BasePage {
 
     public void clickECommerceByEJunkieText() {
         clickElement(eCommerceByEJunkieText);
+    }
+
+    public void clickContactUsBtn() {
+        clickElement(contactUsBtn);
     }
 }
