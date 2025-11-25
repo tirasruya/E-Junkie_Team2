@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.List;
 
 public class PaymentPage extends BasePage {
 
@@ -38,9 +37,6 @@ public class PaymentPage extends BasePage {
 
     @FindBy(css = "#SnackBar > span")
     private WebElement errorMessages;
-
-    @FindBy(xpath = "//div[2]/div/div/p/span")
-    private WebElement confirmationMessage;
 
     @FindBy(id = "checkbox")
     private WebElement checkbox;
@@ -119,10 +115,5 @@ public class PaymentPage extends BasePage {
 
     public void verifyCardNumberErrorMessage(){
         verifyDisplayed(errorMessages, "Your card number is invalid.");
-    }
-
-    public void verifyConfirmationMessage(){
-        driver.switchTo().defaultContent();
-        verifyDisplayed(confirmationMessage, "your order is confirmed. Thank you!");
     }
 }
