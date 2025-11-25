@@ -2,15 +2,19 @@ package stepDefinitions;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import pages.CartPage;
 import pages.HomePage;
 import utility.BaseDriver;
 
 public class AddEBookSteps extends BaseDriver {
 
     HomePage homePage;
+    CartPage cartPage;
 
     public AddEBookSteps(){
-        this.homePage = new HomePage(BaseDriver.getDriver());
+        driver = BaseDriver.getDriver();
+        this.homePage = new HomePage(driver);
+        this.cartPage = new CartPage(driver);
     }
 
     @When("Navigate the homepage")
@@ -25,27 +29,27 @@ public class AddEBookSteps extends BaseDriver {
 
     @Then("Verify E Book added")
     public void verify_e_book_added() {
-        homePage.enterCartFrame();
-        homePage.verifyDemoEBookInput();
+        cartPage.enterCartFrame();
+        cartPage.verifyDemoEBookInput();
     }
 
     @Then("Click the Add Promo Code button")
     public void click_the_add_promo_code_button() {
-        homePage.clickAddPromoCodeBtn();
+        cartPage.clickAddPromoCodeBtn();
     }
 
     @Then("Input an invalid promo code")
     public void input_an_invalid_promo_code() {
-        homePage.enterNumberPromoCodeInput("1");
+        cartPage.enterNumberPromoCodeInput("1");
     }
 
     @Then("Click the Apply button")
     public void click_the_apply_button() {
-        homePage.clickPromoApplyBtn();
+        cartPage.clickPromoApplyBtn();
     }
 
     @Then("Verify the invalid message")
     public void verify_the_invalid_message() {
-        homePage.verifyInvalidMessage();
+        cartPage.verifyInvalidMessage();
     }
 }
