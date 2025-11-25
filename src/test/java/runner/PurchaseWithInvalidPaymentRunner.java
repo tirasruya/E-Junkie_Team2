@@ -1,5 +1,6 @@
 package runner;
 
+import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
@@ -8,5 +9,5 @@ import io.cucumber.testng.CucumberOptions;
         plugin = {"pretty", "html:target/cucumber-report.html"}
 )
 
-public class PurchaseWithInvalidPaymentRunner {
+public class PurchaseWithInvalidPaymentRunner extends AbstractTestNGCucumberTests {
 }

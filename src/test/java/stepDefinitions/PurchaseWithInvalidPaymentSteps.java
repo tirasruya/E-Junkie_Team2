@@ -11,7 +11,7 @@ public class PurchaseWithInvalidPaymentSteps extends BaseDriver {
     HomePage homePage;
     PaymentPage paymentPage;
 
-    public PurchaseWithInvalidPaymentSteps(HomePage homePage) {
+    public PurchaseWithInvalidPaymentSteps() {
         driver = BaseDriver.getDriver();
         this.homePage = new HomePage(driver);
         this.paymentPage = new PaymentPage(driver);
@@ -19,17 +19,12 @@ public class PurchaseWithInvalidPaymentSteps extends BaseDriver {
 
     @When("Click on Pay with Bank Card option on the cart page")
     public void clickPayWithCard() {
-        paymentPage.clickPayButton();
+        paymentPage.clickCCPayButton();
     }
 
-    @Then("The payment page should display fields for:")
-    public void paymentPageDisplayFields(DataTable dataTable) {
+    @Then("The payment page should display fields for: Email, Name, Card Number, Expiration Date, CVC")
+    public void paymentPageDisplayFields() {
         paymentPage.verifyPaymentFieldsDisplayed();
-    }
-
-    @When("Leave all payment fields empty")
-    public void leavePaymentFieldsEmpty() {
-        paymentPage.leaveAllFieldsEmpty();
     }
 
     @And("Click the Pay button")
@@ -37,8 +32,8 @@ public class PurchaseWithInvalidPaymentSteps extends BaseDriver {
         paymentPage.clickPayButton();
     }
 
-    @Then("Verify validation errors for:")
-    public void verifyErrors(DataTable dataTable) {
-
+    @Then("Verify validation errors for: Invalid Email, Invalid Billing Name")
+    public void verifyErrors() {
+        paymentPage.verifyValidationErrors();
     }
 }
