@@ -34,6 +34,7 @@ public class AccessingTheHowItWorksVideoSteps extends BaseDriver {
     }
 
     @Then("the video window should close after 10 seconds")
-    public void closeVideo(int seconds) {
+    public void closeVideo() {
+        eJunkiePage.playVideoAndCloseAfter();
     }
 }
