@@ -39,8 +39,11 @@ public class PaymentPage extends BasePage {
     @FindBy(css = "#SnackBar > span")
     private WebElement errorMessages;
 
-    @FindBy(css = "span.green_text_margin")
+    @FindBy(xpath = "//div[2]/div/div/p/span")
     private WebElement confirmationMessage;
+
+    @FindBy(id = "checkbox")
+    private WebElement checkbox;
 
 
     public PaymentPage(WebDriver driver) {
@@ -103,6 +106,15 @@ public class PaymentPage extends BasePage {
         sendKeysToElement(cvcInput, "000");
 
         driver.switchTo().parentFrame();
+
+        WebElement captchaFrame = driver.findElement(By.cssSelector("#h-captcha-ele > iframe"));
+        driver.switchTo().frame(captchaFrame);
+
+        clickElement(checkbox);
+
+        threadWait(10);
+
+        driver.switchTo().parentFrame();
     }
 
     public void verifyCardNumberErrorMessage(){
@@ -110,6 +122,7 @@ public class PaymentPage extends BasePage {
     }
 
     public void verifyConfirmationMessage(){
+        driver.switchTo().defaultContent();
         verifyDisplayed(confirmationMessage, "your order is confirmed. Thank you!");
     }
 }
