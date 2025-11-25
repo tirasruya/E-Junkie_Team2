@@ -18,6 +18,9 @@ public class PaymentPage extends BasePage {
     @FindBy(css = "input[type=email]")
     private WebElement emailInput;
 
+    @FindBy(css = "p.Billing-Email-Confirm.Inline > input[type=email]")
+    private WebElement emailConfirmationInput;
+
     @FindBy(css = "p.Billing-Name.Inline.MarginRight > input[type=text]")
     private WebElement nameInput;
 
@@ -66,5 +69,24 @@ public class PaymentPage extends BasePage {
 
     public void verifyValidationErrors() {
         verifyDisplayed(errorMessages, "Invalid Email Invalid Email Invalid Billing Name");
+    }
+
+    public void fillPaymentForm(){
+        sendKeysToElement(emailInput, "tester@example.com");
+        sendKeysToElement(emailConfirmationInput, "tester@example.com");
+        sendKeysToElement(nameInput, "Tester");
+
+        WebElement stripeFrame = driver.findElement(By.cssSelector("iframe[name^='__privateStripeFrame']"));
+        driver.switchTo().frame(stripeFrame);
+
+        sendKeysToElement(cardNumberInput, "1111 1111 1111 1111");
+        sendKeysToElement(expDateInput, "1130");
+        sendKeysToElement(cvcInput, "1111");
+
+        driver.switchTo().parentFrame();
+    }
+
+    public void verifyCardNumberErrorMessage(){
+        verifyDisplayed(errorMessages, "Your card number is invalid.");
     }
 }
