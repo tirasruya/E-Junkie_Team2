@@ -6,7 +6,7 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
         features = {"src/test/resources/features/purchaseWithInvalidPayment.feature"},
         glue = {"stepDefinitions", "Hooks"},
-        plugin = {"pretty", "html:target/cucumber-report.html"}
+        plugin = {"pretty", "html:target/cucumber-report.html", "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"}
 )
 
 public class PurchaseWithInvalidPaymentRunner extends AbstractTestNGCucumberTests {
