@@ -1,25 +1,34 @@
 pipeline {
+    agent any
 
-tools{
-    jdk 'JDK21'
-    maven 'Maven-3.9'
-}
+    tools {
+        jdk 'JDK21'
+        maven 'Maven-3.9'
+    }
 
-stages {
-    stage('Checkout')
-        git branch: 'master',
-        url: 'https://github.com/tirasruya/E-Junkie_Team2.git'
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'master', url: 'https://github.com/tirasruya/E-Junkie_Team2.git'
+            }
+        }
 
-    stage('Run Test')
-        //Mac
-        //sh 'mvn clean test'
+        stage('Run Test') {
+            steps {
+                // For Mac/Linux
+                // sh 'mvn clean test'
 
-        //Windows
-        bat 'mvn clean test'
+                // For Windows
+                bat 'mvn clean test'
+            }
+        }
 
-    stage('Generate Allure Report')
-        allure([
-            results: [[path: 'target/allure-results']]
-        ])
-}
+        stage('Generate Allure Report') {
+            steps {
+                allure([
+                    results: [[path: 'target/allure-results']]
+                ])
+            }
+        }
+    }
 }
