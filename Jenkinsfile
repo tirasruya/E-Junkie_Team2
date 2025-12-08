@@ -26,6 +26,7 @@ pipeline {
         stage('Generate Allure Report') {
             steps {
                 allure([
+                    commandline: 'Allure',
                     results: [[path: 'target/allure-results']]
                 ])
             }
