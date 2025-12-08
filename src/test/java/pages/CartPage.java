@@ -5,18 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import utility.BaseDriver;
 
 public class CartPage extends BasePage {
 
-    @FindBy(css = "iframe.EJIframeV3")
-    private WebElement cartFrame;
-
-    @FindBy(css = "iframe[src*='fatfreecartpro.com/ecom/gv3.php']")
+    @FindBy(css = "span.Cart-Items-Nos")
     private WebElement demoEBookQuantity;
 
-    @FindBy(xpath = "//button[text()='Add Promo Code']")
+    @FindBy(css = ".Apply-Button.Show-Promo-Code-Button")
     private WebElement addPromoCodeBtn;
 
     @FindBy(className = "Promo-Code-Value")
@@ -35,14 +31,12 @@ public class CartPage extends BasePage {
     Actions actionDriver = new Actions(BaseDriver.getDriver());
 
     public void enterCartFrame(){
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("iframe.EJIframeV3")));
+        WebElement cartFrame = driver.findElement(By.cssSelector("iframe.EJIframeV3"));
         driver.switchTo().frame(cartFrame);
     }
 
     public void verifyDemoEBookInput(){
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[class='Apply-Button Show-Promo-Code-Button']")));
-        WebElement clickableBtn = driver.findElement(By.cssSelector("button[class='Apply-Button Show-Promo-Code-Button']"));
-        actionDriver.moveToElement(clickableBtn).click().build().perform();
+        verifyDisplayed(demoEBookQuantity, "1");
     }
 
     public void clickAddPromoCodeBtn(){
