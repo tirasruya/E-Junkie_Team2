@@ -6,10 +6,15 @@ pipeline {
         maven 'Maven-3.9'
     }
 
+    environment {
+            ALLURE_RESULTS = "${env.WORKSPACE}/target/allure-results"
+        }
+
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/tirasruya/E-Junkie_Team2.git'
+                git branch: 'master',
+                url: 'https://github.com/tirasruya/E-Junkie_Team2.git'
             }
         }
 
@@ -27,7 +32,8 @@ pipeline {
             steps {
                 allure([
                     commandline: 'Allure',
-                    results: [[path: 'target/allure-results']]
+                    results: [[path: 'target/allure-results']],
+                    reportBuildPolicy: 'ALWAYS'
                 ])
             }
         }
