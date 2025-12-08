@@ -5,11 +5,13 @@ import io.cucumber.testng.CucumberOptions;
 import io.qameta.allure.testng.AllureTestNg;
 import org.testng.annotations.Listeners;
 
+
 @Listeners({AllureTestNg.class})
 @CucumberOptions(
-        features = {"src/test/resources/features/sendingContactMessage.feature",},
+        features = {"src/test/resources/features/"},
         glue = {"stepDefinitions", "Hooks"},
         plugin = {"pretty", "html:target/cucumber-report.html", "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"}
 )
-public class SendingContactMessageRunner extends AbstractTestNGCucumberTests {
+
+public class TestsRunner extends AbstractTestNGCucumberTests {
 }
