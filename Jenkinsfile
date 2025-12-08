@@ -23,12 +23,12 @@ pipeline {
             }
         }
 
-        stage('Generate Allure Report') {
-            steps {
-                allure([
-                    results: [[path: 'target/allure-results']]
-                ])
-            }
-        }
+        //stage('Generate Allure Report') {
+            //steps {
+                //allure([
+                    //results: [[path: 'target/allure-results']]
+                //])
+            //}
+        //}
     }
 }
