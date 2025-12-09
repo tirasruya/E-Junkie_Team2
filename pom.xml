@@ -65,13 +65,15 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
-
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <systemPropertyVariables>
                         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
                     </systemPropertyVariables>
-
+                    <includes>
+                        <include>**/Runner.java</include>
+                        <include>**/*Runner.java</include>
+                    </includes>
                 </configuration>
             </plugin>
 
