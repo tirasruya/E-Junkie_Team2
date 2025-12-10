@@ -2,6 +2,7 @@ package utility;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 
@@ -10,6 +11,10 @@ public class BaseDriver {
     public static WebDriver driver;
 
     public static WebDriver getDriver() {
+
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless=new");
+        chromeOptions.addArguments("--window-size=1920,1080");
 
         if (driver == null) {
             driver = new ChromeDriver();
