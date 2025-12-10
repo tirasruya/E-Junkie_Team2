@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  testng-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: E-Junkie_Team2_tests
+
+    volumes:
+      - ./target:/usr/src/app/target
+      - ./logs:/usr/src/app/logs
+
+    shm_size: "2gb"
