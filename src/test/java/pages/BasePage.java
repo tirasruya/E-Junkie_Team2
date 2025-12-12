@@ -50,7 +50,7 @@ public class BasePage {
                     ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
                     LOGGER.debug("Element clicked with Javascript");
                 } catch (Exception e3) {
-                    throw new RuntimeException("Hicbir click metodu ise yaramadi");
+                    throw new RuntimeException("None of the click methods worked.");
                 }
             }
         }
@@ -77,7 +77,7 @@ public class BasePage {
                             .executeScript("arguments[0].value = arguments[1];", element, text);
                     LOGGER.debug("Text sent to element with Javascript");
                 } catch (Exception e3) {
-                    throw new RuntimeException("Tüm sendKeys islemleri basarisiz oldu");
+                    throw new RuntimeException("All sendKeys operations failed.");
                 }
             }
         }
